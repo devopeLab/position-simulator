@@ -12,6 +12,14 @@ pipeline {
             }
         }
 
+        stage('code quality') {
+    steps {
+        withSonarQubeEnv('code-quality') {
+            sh 'mvn sonar:sonar'
+        }
+    }
+}
+        
         stage('Build') {
             steps {
                 echo 'Building...'
